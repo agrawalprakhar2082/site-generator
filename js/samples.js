@@ -1,0 +1,227 @@
+/* Fictional sample companies, used to show prospects what a finished site looks like.
+ * Contact details are deliberately placeholders (example.com, 00000 numbers). */
+(function () {
+  "use strict";
+
+  const engineering = {
+    template: "engineering",
+    mode: "demo",
+    domain: "",
+    brand_color: "",
+    company: {
+      name: "Riverside Precision Castings (Sample)",
+      tagline: "Grey & SG iron castings, machined to your drawing",
+      business_type: "Manufacturer & Exporter",
+      established_year: "1994",
+      city: "Howrah",
+      state: "West Bengal",
+      gstin: "",
+      iec: "",
+      about:
+        "Riverside Precision Castings is a family-run foundry in Howrah producing grey iron and SG iron castings for pumps, valves, railways and general engineering.\n\nWe work from customer drawings and patterns, with in-house moulding, melting, fettling and CNC machining, so buyers get finished parts from a single supplier. Every batch is checked for chemistry and dimensions before dispatch.",
+    },
+    highlights: [
+      { label: "Years in business", value: "30+" },
+      { label: "Monthly capacity", value: "250 MT" },
+      { label: "Casting weight range", value: "1–500 kg" },
+      { label: "Export markets", value: "6 countries" },
+    ],
+    why_us: [],
+    products: [
+      {
+        name: "Grey Iron Castings",
+        category: "Ferrous castings",
+        description: "FG 200 to FG 300 grade castings for pump bodies, housings, flywheels and machine bases.",
+        specs: [
+          { label: "Grades", value: "FG 200, FG 260, FG 300" },
+          { label: "Weight range", value: "1 kg – 500 kg" },
+          { label: "Process", value: "Green sand moulding" },
+        ],
+        image: "",
+      },
+      {
+        name: "SG Iron (Ductile) Castings",
+        category: "Ferrous castings",
+        description: "Spheroidal graphite iron castings for valve bodies, gear blanks and high-strength components.",
+        specs: [
+          { label: "Grades", value: "SG 400/15, SG 500/7, SG 600/3" },
+          { label: "Testing", value: "Spectro, tensile, microstructure" },
+        ],
+        image: "",
+      },
+      {
+        name: "Pump & Valve Components",
+        category: "Machined parts",
+        description: "Impellers, casings and valve bodies supplied cast or fully machined.",
+        specs: [{ label: "Machining", value: "CNC turning & VMC" }],
+        image: "",
+      },
+      {
+        name: "Railway Castings",
+        category: "Railway",
+        description: "Castings for rolling stock and track fittings, manufactured to customer specifications.",
+        specs: [],
+        image: "",
+      },
+      {
+        name: "Manhole Covers & Gratings",
+        category: "Infrastructure",
+        description: "Cast iron manhole covers, frames and gratings in standard and custom sizes.",
+        specs: [{ label: "Load classes", value: "Light, medium & heavy duty" }],
+        image: "",
+      },
+      {
+        name: "Machined Flywheels & Pulleys",
+        category: "Machined parts",
+        description: "Balanced flywheels and V-belt pulleys machined to drawing.",
+        specs: [],
+        image: "",
+      },
+    ],
+    industries: ["Pumps & valves", "Railways", "Infrastructure", "Agricultural machinery", "General engineering"],
+    certifications: ["ISO 9001:2015"],
+    export_markets: ["USA", "Germany", "UAE", "Bangladesh", "Nepal", "Kenya"],
+    contact: {
+      person: "Sales Team",
+      phone: "+91 00000 00000",
+      whatsapp: "",
+      email: "sales@example.com",
+      address: "Industrial Estate Road",
+      pincode: "711000",
+      hours: "Mon–Sat, 10:00 am – 6:30 pm",
+      form_endpoint: "",
+      map_query: "Howrah, West Bengal",
+    },
+    assets: {},
+    logo: "",
+    hero: "",
+    gallery: [],
+  };
+
+  const jute = {
+    template: "jute",
+    mode: "demo",
+    domain: "",
+    brand_color: "",
+    company: {
+      name: "Hooghly Green Jute Works (Sample)",
+      tagline: "Custom jute bags and fabric for brands and bulk buyers",
+      business_type: "Manufacturer & Exporter",
+      established_year: "2009",
+      city: "Kolkata",
+      state: "West Bengal",
+      gstin: "",
+      iec: "",
+      about:
+        "Hooghly Green Jute Works makes jute shopping bags, promotional bags and jute fabric for retailers, brands and exporters.\n\nWe offer custom sizes, laminations, handles and screen printing, with sampling before bulk production.",
+    },
+    highlights: [
+      { label: "Founded", value: "2009" },
+      { label: "Bags per month", value: "1 lakh+" },
+      { label: "Minimum order", value: "500 pcs" },
+    ],
+    why_us: [],
+    products: [
+      {
+        name: "Jute Shopping Bags",
+        category: "Bags",
+        description: "Laminated and non-laminated jute shopping bags with rope, cotton or padded handles.",
+        specs: [
+          { label: "Sizes", value: "Custom" },
+          { label: "Printing", value: "Screen print, up to 4 colours" },
+        ],
+        image: "",
+      },
+      {
+        name: "Promotional Jute Bags",
+        category: "Bags",
+        description: "Branded bags for events, conferences and corporate gifting.",
+        specs: [],
+        image: "",
+      },
+      {
+        name: "Jute Hessian Fabric",
+        category: "Fabric",
+        description: "Hessian cloth in multiple GSM and widths for packaging, décor and crafts.",
+        specs: [{ label: "GSM", value: "200 – 400" }],
+        image: "",
+      },
+      {
+        name: "Jute Wine Bottle Bags",
+        category: "Bags",
+        description: "Single and double bottle carriers with window and drawstring options.",
+        specs: [],
+        image: "",
+      },
+    ],
+    industries: ["Retail chains", "Supermarkets", "Corporate gifting", "Exporters & importers"],
+    certifications: [],
+    export_markets: ["UK", "Germany", "Australia"],
+    contact: {
+      person: "Sales Team",
+      phone: "+91 00000 00000",
+      whatsapp: "",
+      email: "orders@example.com",
+      address: "",
+      pincode: "",
+      hours: "Mon–Sat, 10:00 am – 7:00 pm",
+      form_endpoint: "",
+      map_query: "Kolkata, West Bengal",
+    },
+    assets: {},
+    logo: "",
+    hero: "",
+    gallery: [],
+  };
+
+  const leather = {
+    template: "leather",
+    mode: "demo",
+    domain: "",
+    brand_color: "",
+    company: {
+      name: "Bantala Craft Leathers (Sample)",
+      tagline: "Private-label leather bags, wallets and accessories",
+      business_type: "Manufacturer & Exporter",
+      established_year: "2001",
+      city: "Kolkata",
+      state: "West Bengal",
+      gstin: "",
+      iec: "",
+      about:
+        "Bantala Craft Leathers manufactures leather bags, wallets, belts and accessories for private-label brands and retailers.\n\nWe handle design development, sampling and bulk production in-house.",
+    },
+    highlights: [
+      { label: "Since", value: "2001" },
+      { label: "Pieces per month", value: "15,000" },
+      { label: "Sampling time", value: "7–10 days" },
+    ],
+    why_us: [],
+    products: [
+      { name: "Leather Handbags", category: "Bags", description: "Totes, satchels and crossbody bags in genuine leather.", specs: [], image: "" },
+      { name: "Men's Wallets", category: "Small leather goods", description: "Bi-fold, tri-fold and card holders with RFID options.", specs: [], image: "" },
+      { name: "Leather Belts", category: "Accessories", description: "Casual and formal belts with custom buckles.", specs: [], image: "" },
+      { name: "Laptop & Office Bags", category: "Bags", description: "Briefcases, laptop sleeves and messenger bags.", specs: [], image: "" },
+    ],
+    industries: ["Fashion brands", "Retailers", "Corporate gifting"],
+    certifications: [],
+    export_markets: ["Germany", "Italy", "UK"],
+    contact: {
+      person: "Export Desk",
+      phone: "+91 00000 00000",
+      whatsapp: "",
+      email: "export@example.com",
+      address: "",
+      pincode: "",
+      hours: "Mon–Sat, 10:00 am – 6:00 pm",
+      form_endpoint: "",
+      map_query: "Bantala Leather Complex, Kolkata",
+    },
+    assets: {},
+    logo: "",
+    hero: "",
+    gallery: [],
+  };
+
+  window.SiteSamples = { engineering, jute, leather };
+})();
