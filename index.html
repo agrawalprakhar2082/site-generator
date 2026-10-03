@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Site Generator</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="appbar">
+  <div class="brand">⚡ Demo Site Generator</div>
+  <div class="appbar-actions">
+    <select id="sample-select" aria-label="Load a sample">
+      <option value="">Load sample…</option>
+      <option value="engineering">Sample: Engineering / Foundry</option>
+      <option value="jute">Sample: Jute products</option>
+      <option value="leather">Sample: Leather goods</option>
+    </select>
+    <button id="btn-new" class="ghost">New client</button>
+    <button id="btn-open" class="ghost">Open client file</button>
+    <button id="btn-save" class="ghost">Save client file</button>
+    <button id="btn-settings" class="ghost">⚙ Settings</button>
+    <input type="file" id="open-file" accept=".json,application/json" hidden>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="editor" id="editor">
+    <details class="panel" open>
+      <summary>✨ Auto-fill with AI</summary>
+      <p class="hint">Open the company's IndiaMART page (or their Google listing), select all the text by hand, copy, and paste it here. Claude fills in the form. Facts it can't find stay blank, so check everything before sending.</p>
+      <textarea id="ai-input" rows="6" placeholder="Paste the company's listing text here…"></textarea>
+      <div class="row-actions">
+        <button id="btn-ai" class="primary">Fill form from text</button>
+        <span id="ai-status" class="status" role="status"></span>
+      </div>
+    </details>
+
+    <details class="panel" open>
+      <summary>🏭 Company</summary>
+      <div class="grid2">
+        <label>Template
+          <select data-path="template">
+            <option value="engineering">Engineering &amp; Foundry</option>
+            <option value="jute">Jute &amp; Natural Fibre</option>
+            <option value="leather">Leather Goods</option>
+          </select>
+        </label>
+        <label>Site mode
+          <select data-path="mode">
+            <option value="demo">Demo (hidden from Google, sample banner)</option>
+            <option value="live">Live (indexed, no banner)</option>
+          </select>
+        </label>
+      </div>
+      <label>Company name<input data-path="company.name" placeholder="e.g. Sharma Castings Pvt. Ltd."></label>
+      <label>Tagline<input data-path="company.tagline" placeholder="One line: what you make and for whom"></label>
+      <div class="grid2">
+        <label>Business type<input data-path="company.business_type" placeholder="Manufacturer & Exporter"></label>
+        <label>Year established<input data-path="company.established_year" inputmode="numeric"></label>
+        <label>City<input data-path="company.city" placeholder="Howrah"></label>
+        <label>State<input data-path="company.state" placeholder="West Bengal"></label>
+        <label>GSTIN<input data-path="company.gstin"></label>
+        <label>IEC (export code)<input data-path="company.iec"></label>
+      </div>
+      <label>About the company<textarea data-path="company.about" rows="6" placeholder="Two short paragraphs. Blank line between paragraphs."></textarea></label>
+      <div class="grid2">
+        <label>Domain (for live sites)<input data-path="domain" placeholder="sharmacastings.com"></label>
+        <label>Brand colour (optional)<input data-path="brand_color" placeholder="#17406b"></label>
+      </div>
+    </details>
+
+    <details class="panel">
+      <summary>📊 Highlights &amp; why choose us</summary>
+      <p class="hint">Highlights show as a strip of numbers under the hero (max 4). Leave “why choose us” empty to use the template's default points.</p>
+      <h4>Highlights</h4>
+      <div id="highlights-list"></div>
+      <button class="ghost small" data-add="highlights">+ Add highlight</button>
+      <h4>Why choose us</h4>
+      <div id="whyus-list"></div>
+      <button class="ghost small" data-add="why_us">+ Add point</button>
+    </details>
+
+    <details class="panel" open>
+      <summary>📦 Products</summary>
+      <div id="products-list"></div>
+      <button class="ghost small" data-add="products">+ Add product</button>
+    </details>
+
+    <details class="panel">
+      <summary>🌍 Industries, certifications, export markets</summary>
+      <label>Industries served <span class="muted">(comma separated)</span><input data-list="industries"></label>
+      <label>Certifications <span class="muted">(comma separated)</span><input data-list="certifications" placeholder="ISO 9001:2015, CE"></label>
+      <label>Export markets <span class="muted">(comma separated)</span><input data-list="export_markets" placeholder="USA, Germany, UAE"></label>
+    </details>
+
+    <details class="panel">
+      <summary>🖼️ Logo, hero &amp; factory photos</summary>
+      <p class="hint">Use photos the company has shared with you or published on its own listing. Photos are shrunk automatically so the site loads fast.</p>
+      <div class="image-slot" id="slot-logo"></div>
+      <div class="image-slot" id="slot-hero"></div>
+      <div class="image-slot" id="slot-gallery"></div>
+    </details>
+
+    <details class="panel" open>
+      <summary>📞 Contact</summary>
+      <div class="grid2">
+        <label>Contact person<input data-path="contact.person"></label>
+        <label>Phone<input data-path="contact.phone" inputmode="tel"></label>
+        <label>WhatsApp (if different)<input data-path="contact.whatsapp" inputmode="tel"></label>
+        <label>Email<input data-path="contact.email" type="email"></label>
+      </div>
+      <label>Address<input data-path="contact.address"></label>
+      <div class="grid2">
+        <label>PIN code<input data-path="contact.pincode" inputmode="numeric"></label>
+        <label>Business hours<input data-path="contact.hours" placeholder="Mon–Sat, 10 am – 7 pm"></label>
+      </div>
+      <label>Map search text <span class="muted">(optional)</span><input data-path="contact.map_query" placeholder="Defaults to company name + address"></label>
+      <label>Form endpoint <span class="muted">(optional, e.g. Formspree URL; otherwise enquiries open in WhatsApp/email)</span><input data-path="contact.form_endpoint" placeholder="https://formspree.io/f/xxxx"></label>
+    </details>
+    <p class="autosave" id="autosave-status"></p>
+  </aside>
+
+  <section class="preview">
+    <div class="preview-bar">
+      <div class="tabs" id="page-tabs" role="tablist"></div>
+      <div class="preview-actions">
+        <div class="seg" role="group" aria-label="Preview width">
+          <button data-device="desktop" class="on">🖥</button>
+          <button data-device="mobile">📱</button>
+        </div>
+        <button id="btn-newtab" class="ghost">Open in tab</button>
+        <button id="btn-outreach" class="ghost">✉ Outreach email</button>
+        <button id="btn-export" class="primary">⬇ Download website (.zip)</button>
+      </div>
+    </div>
+    <div class="checks" id="checks"></div>
+    <div class="frame-wrap" id="frame-wrap"><iframe id="preview" title="Website preview"></iframe></div>
+  </section>
+</div>
+
+<dialog id="settings-dialog">
+  <form method="dialog" class="dialog-body">
+    <h2>Settings</h2>
+    <p class="hint">Your details appear in the “sample website” banner and the outreach email.</p>
+    <label>Your business name<input id="set-agency-name" placeholder="e.g. Kolkata Web Studio"></label>
+    <div class="grid2">
+      <label>Your phone<input id="set-agency-phone"></label>
+      <label>Your email<input id="set-agency-email" type="email"></label>
+    </div>
+    <label>Demo link pattern <span class="muted">({slug} becomes the company's short name)</span><input id="set-demo-url" placeholder="https://{slug}.pages.dev"></label>
+    <hr>
+    <label>Anthropic API key <span class="muted">(for AI auto-fill)</span><input id="set-api-key" type="password" autocomplete="off" placeholder="sk-ant-…"></label>
+    <label class="check"><input type="checkbox" id="set-remember-key"> Remember the key on this computer (stored in this browser only)</label>
+    <p class="hint">The key is sent only to Anthropic's API. Don't use this tool on a shared or public computer with the key saved.</p>
+    <div class="row-actions end">
+      <button value="cancel" class="ghost">Cancel</button>
+      <button id="settings-save" value="save" class="primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="outreach-dialog">
+  <form method="dialog" class="dialog-body wide">
+    <h2>Outreach email</h2>
+    <p class="hint">Check the details and send it from your own email, one company at a time. Delete the demo if they say no.</p>
+    <label>Subject<input id="out-subject"></label>
+    <label>Message<textarea id="out-body" rows="16"></textarea></label>
+    <div class="row-actions end">
+      <span id="out-status" class="status"></span>
+      <button value="close" class="ghost">Close</button>
+      <button type="button" id="out-copy" class="ghost">Copy message</button>
+      <a id="out-mailto" class="button primary" href="#">Open in email app</a>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="js/templates.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
